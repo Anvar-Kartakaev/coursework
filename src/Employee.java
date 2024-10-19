@@ -41,12 +41,12 @@ public class Employee {
         if (other == this) return true;
         if (other == null || other.getClass() != getClass()) return false;
         Employee otherEmployee = (Employee) other;
-        return name.equals(otherEmployee.name) && department.equals(otherEmployee.department) && salary == (otherEmployee.salary);
+        return id == (otherEmployee.id) && name.equals(otherEmployee.name) && department.equals(otherEmployee.department) && salary == (otherEmployee.salary);
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(getName(), getDepartment(), getSalary());
+        return java.util.Objects.hash(getId(), getName(), getDepartment(), getSalary());
     }
 
     @Override

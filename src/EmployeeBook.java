@@ -35,9 +35,10 @@ public class EmployeeBook {
     public void addWorker(String name, String department, float salary) {
         if (size >= workers.length) {
             System.out.println("Нельзя добавить работника, закончились места");
+        } else {
+            Employee newWorker = new Employee(name, department, salary);
+            workers[size++] = newWorker;
         }
-        Employee newWorker = new Employee(name, department, salary);
-        workers[size++] = newWorker;
     }
 
     // Метод #3 removeWorker (удалить работника)
@@ -48,7 +49,7 @@ public class EmployeeBook {
                 System.arraycopy(workers, i + 1, workers, i, size - i - 1);
                 workers[size - 1] = null;
                 size--;
-                return;
+                break;
             }
         }
     }
@@ -76,11 +77,9 @@ public class EmployeeBook {
 
     // Метод #6 countMinSalary найти сотрудника с минимальной ЗП
     public void countMinSalary() {
-        float minSum = workers[2].getSalary();
         Employee worker = workers[0];
         for (int i = 1; i < size; i++) {
-            if (workers[i].getSalary() < minSum) {
-                minSum = workers[i].getSalary();
+            if (workers[i].getSalary() < worker.getSalary()) {
                 worker = workers[i];
             }
         }
@@ -89,11 +88,9 @@ public class EmployeeBook {
 
     // Метод #7 countMaxSalary найти сотрудника с максимальной ЗП
     public void countMaxSalary() {
-        float maxSum = workers[2].getSalary();
         Employee worker = workers[0];
         for (int i = 1; i < size; i++) {
-            if (workers[i].getSalary() > maxSum) {
-                maxSum = workers[i].getSalary();
+            if (workers[i].getSalary() > worker.getSalary()) {
                 worker = workers[i];
             }
         }
@@ -138,8 +135,8 @@ public class EmployeeBook {
                 sum += workers[i].getSalary();
                 numberOfDepartment += workers[i].getDepartment().length();
             }
-            averageSum = sum / numberOfDepartment;
         }
+        averageSum = sum / numberOfDepartment;
         System.out.println("Средняя ЗП по отделу " + averageSum + " рублей.");
     }
 
@@ -224,10 +221,10 @@ public class EmployeeBook {
     }
 
     // Метод #18 printAllSalariesGreaterThanOrEqual распечатать всех сотрудников с ЗП больше (или равно) числа (распечатать id, фио и зп в консоль).
-    public void printAllSalariesGreaterThanOrEqual(float GreaterThanOrEqual) {
+    public void printAllSalariesGreaterThanOrEqual(float greaterThanOrEqual) {
         Employee worker = workers[0];
         for (int i = 0; i < size; i++) {
-            if (workers[i].getSalary() >= GreaterThanOrEqual) {
+            if (workers[i].getSalary() >= greaterThanOrEqual) {
                 worker = workers[i];
                 System.out.println(worker.toString());
             }
